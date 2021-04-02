@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Сервіс Обліку Студентів</title>
+    <meta name="description"
+          content="Система Обліку Студентів Навчального Закладу"/>
+
+    <!-- Include Styles -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+<!-- Start Container -->
+<div class="container">
+
+    <!-- Start Header -->
+    <div class="row mt-3" id="header">
+        <!-- Logo -->
+        <div class="col-sm-8">
+            <h1>Сервіс Обліку Студентів</h1>
+        </div>
+        <!-- Groups Selector -->
+        <div class="col-sm-4 d-flex" id="group-selector">
+            <label for="group"><strong>Група:</strong></label>
+            <select class="custom-select" name="group" id="group">
+                <option selected>Усі Студенти</option>
+                <option value="">One</option>
+                <option value="">Two</option>
+                <option value="">Three</option>
+            </select>
+        </div>
+    </div>
+    <!-- End Header -->
+
+    <!-- Start SubHeader -->
+    <div class="row" id="sub-header">
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Студенти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Відвідування</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Групи</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End SubHeader -->
+
+    <!-- Start Main Page Content -->
+    <div class="row" id="content-columns">
+        <div class="col-sm-12" id="content-column">
+            <!-- Status Message -->
+            <div class="alert alert-warning" role="alert">
+                Зміни скасовано.
+            </div>
+            <div class="my-3">
+                <h2>База Студентів</h2>
+                <!-- Add Student Button -->
+                <a class="btn btn-primary " href="#" role="button">Додати Студента</a>
+            </div>
+
+            <!-- Start Student List -->
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th><a href="">№</a></th>
+                    <th>Фото</th>
+                    <th><a href="">Прізвище &uarr;</a></th>
+                    <th><a href="#">Ім’я</a></th>
+                    <th><a href="#">№ Білету</a></th>
+                    <th>Дія</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><img class="rounded-circle" height="35" width="35"
+                             src="./img/gravity_falls_na_avu02.jpg"></td>
+                    <td><a title="Редагувати" href="#">Прізвище-1</a></td>
+                    <td><a title="Редагувати" href="#">Ім’я-1</a></td>
+                    <td>215</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                Дія
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Редагувати</a>
+                                <a class="dropdown-item" href="#">Відвідування</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Видалити</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- End Student List -->
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- End Main Page Content -->
+
+    <!-- Start Footer -->
+    <div class="row" id="footer">
+        <div class="col-sm-12">
+            &copy; 2021 Сервіс Обліку Студентів
+        </div>
+    </div>
+    <!-- End Footer -->
+
+</div>
+<!-- End Container -->
+
+<!-- Javascript Section -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+</html>
