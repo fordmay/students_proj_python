@@ -43,13 +43,13 @@
         <div class="col-sm-12">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Студенти</a>
+                    <a class="nav-link active" href="{% url 'students:home' %}">Студенти</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Відвідування</a>
+                    <a class="nav-link" href="/journal">Відвідування</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Групи</a>
+                    <a class="nav-link" href="{% url 'students:groups' %}">Групи</a>
                 </li>
             </ul>
         </div>
@@ -63,10 +63,10 @@
             <div class="alert alert-warning" role="alert">
                 Зміни скасовано.
             </div>
-            <div class="my-3">
+            <div class="my-3 d-flex">
                 <h2>База Студентів</h2>
                 <!-- Add Student Button -->
-                <a class="btn btn-primary " href="#" role="button">Додати Студента</a>
+                <a class="btn btn-primary " href="{% url 'students:students_add' %}" role="button">Додати Студента</a>
             </div>
 
             <!-- Start Student List -->
@@ -86,8 +86,8 @@
                     <td>1</td>
                     <td><img class="rounded-circle" height="35" width="35"
                              src="./img/gravity_falls_na_avu02.jpg"></td>
-                    <td><a title="Редагувати" href="#">Прізвище-1</a></td>
-                    <td><a title="Редагувати" href="#">Ім’я-1</a></td>
+                    <td><a title="Редагувати" href="{% url 'students:students_edit' 1 %}">Прізвище-1</a></td>
+                    <td><a title="Редагувати" href="{% url 'students:students_edit' 1 %}">Ім’я-1</a></td>
                     <td>215</td>
                     <td>
                         <div class="btn-group">
@@ -97,10 +97,10 @@
                                 Дія
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Редагувати</a>
-                                <a class="dropdown-item" href="#">Відвідування</a>
+                                <a class="dropdown-item" href="{% url 'students:students_edit' 1 %}">Редагувати</a>
+                                <a class="dropdown-item" href="/journal/1">Відвідування</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Видалити</a>
+                                <a class="dropdown-item" href="{% url 'students:students_delete' 1 %}">Видалити</a>
                             </div>
                         </div>
                     </td>
