@@ -4,7 +4,24 @@ from django.shortcuts import render
 
 # Views for Students
 def students_list(request):
-    return render(request, 'students/students_list.html')
+    students = (
+        {'id': 1,
+         'first_name': 'Ім’я-1',
+         'last_name': 'Перший',
+         'ticket': 215,
+         'image': 'img/gravity_falls_na_avu02.jpg'},
+        {'id': 2,
+         'first_name': 'Ім’я-2',
+         'last_name': 'Другий',
+         'ticket': 152,
+         'image': 'img/gravity_falls_na_avu04.jpg'},
+        {'id': 3,
+         'first_name': 'Ім’я-3',
+         'last_name': 'Третій',
+         'ticket': 64,
+         'image': 'img/gravity_falls_na_avu05.jpg'}
+    )
+    return render(request, 'students/students_list.html', {'students': students})
 
 
 def students_add(request):
