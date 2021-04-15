@@ -6,20 +6,20 @@ from django.shortcuts import render
 def students_list(request):
     students = (
         {'id': 1,
-         'first_name': 'Ім’я-1',
-         'last_name': 'Перший',
+         'first_name': 'Мейсон',
+         'last_name': 'Пайнс',
          'ticket': 215,
-         'image': 'img/gravity_falls_na_avu02.jpg'},
+         'image': 'img/gravity_falls_na_avu01.jpg'},
         {'id': 2,
-         'first_name': 'Ім’я-2',
-         'last_name': 'Другий',
+         'first_name': 'Мейбл',
+         'last_name': 'Пайнс',
          'ticket': 152,
-         'image': 'img/gravity_falls_na_avu04.jpg'},
+         'image': 'img/gravity_falls_na_avu02.jpg'},
         {'id': 3,
-         'first_name': 'Ім’я-3',
-         'last_name': 'Третій',
+         'first_name': 'Стенлі',
+         'last_name': 'Пайнс',
          'ticket': 64,
-         'image': 'img/gravity_falls_na_avu05.jpg'}
+         'image': 'img/gravity_falls_na_avu03.jpg'}
     )
     return render(request, 'students/students_list.html', {'students': students})
 
@@ -38,7 +38,18 @@ def students_delete(request, student_id):
 
 # Views for Groups
 def groups_list(request):
-    return HttpResponse('<h1>Groups List</h1>')
+    groups = (
+        {'id': 1,
+         'name': 'ME-1',
+         'leader': {'id': 1, 'name': 'Мейсон Пайнс'}},
+        {'id': 2,
+         'name': 'ME-2',
+         'leader': {'id': 2, 'name': 'Майбл Пайнс'}},
+        {'id': 3,
+         'name': 'ME-3',
+         'leader': {'id': 3, 'name': 'Стенлі Пайнс'}},
+    )
+    return render(request, 'students/groups_list.html', {'groups': groups})
 
 
 def groups_add(request):
