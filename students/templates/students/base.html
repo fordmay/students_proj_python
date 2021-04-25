@@ -47,16 +47,19 @@
     <div class="col-sm-12">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link {% if request.path == '/' %}active{% endif %}"
-             href="{% url 'students:home' %}">Студенти</a>
+          {% url 'students:home' as home_url %}
+          <a class="nav-link {% if request.path == home_url %}active{% endif %}"
+             href="{{ home_url }}">Студенти</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if '/journal' in request.path %}active{% endif %}"
-             href="/journal">Відвідування</a>
+          {% url 'students:journal' as journal_url %}
+          <a class="nav-link {% if request.path == journal_url %}active{% endif %}"
+             href="{{ journal_url }}">Відвідування</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if '/groups' in request.path %}active{% endif %}"
-             href="{% url 'students:groups' %}">Групи</a>
+          {% url 'students:groups' as groups_url %}
+          <a class="nav-link {% if request.path == groups_url %}active{% endif %}"
+             href="{{ groups_url }}">Групи</a>
         </li>
       </ul>
     </div>
