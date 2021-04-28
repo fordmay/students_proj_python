@@ -5,11 +5,14 @@
 
 {% block title %}Список Груп{% endblock title %}
 
-{% block content %}
-<!-- Add Button -->
-<a class="btn btn-primary mb-3" href="{% url 'students:groups_add' %}" role="button">Додати Групу</a>
+{% block button %}
+<div class="ml-3">
+  <a class="btn btn-primary" href="{% url 'students:groups_add' %}" role="button">Додати Групу</a>
+</div>
+{% endblock button %}
 
-<!-- Start Student List -->
+{% block content %}
+<!-- Start Groups List -->
 <table class="table table-hover table-striped">
   <thead>
   <tr>
@@ -42,7 +45,7 @@
   {% endfor%}
   </tbody>
 </table>
-<!-- End Student List -->
+<!-- End Groups List -->
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">

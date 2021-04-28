@@ -75,9 +75,14 @@
         Статус Оновлено!
       </div>
       {% endcomment %}
-      <h2 class="my-3">
-        {% block title %}{% endblock title %}
-      </h2>
+      <div class="d-flex my-3">
+        <h2>
+          {% block title %}{% endblock title %}
+        </h2>
+
+        {% block button %}{% endblock button %}
+      </div>
+
       {% block content %}{% endblock content %}
     </div>
   </div>
