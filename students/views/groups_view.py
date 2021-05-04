@@ -12,7 +12,7 @@ def groups_list(request):
          'leader': {'id': 2, 'name': 'Майбл Пайнс'}},
         {'id': 3,
          'name': 'ME-3',
-         'leader': {'id': 3, 'name': 'Стенлі Пайнс'}},
+         'leader': {'id': 3, 'name': 'Стенлі Пайнс'}}
     )
     return render(request, 'students/groups_list.html', {'groups': groups})
 
