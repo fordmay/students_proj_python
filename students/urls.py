@@ -1,6 +1,8 @@
 """Defines URL patterns for students."""
 from django.urls import path
 from students.views import students_view, groups_view, journal_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'students'
 
@@ -17,4 +19,4 @@ urlpatterns = [
     path('groups/<int:group_id>/delete/', groups_view.groups_delete, name='groups_delete'),
     # Journal pages
     path('journal/', journal_view.journal_list, name='journal')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
