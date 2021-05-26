@@ -86,21 +86,31 @@
 </table>
 <!-- End Student List -->
 
+{% if students.has_other_pages %}
+{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link" aria-label="Previous"
+         href="{% url 'students:home' %}?page=1&order_by={{ order_by }}&reverse={{ reverse }}">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    {% for p in students.paginator.page_range %}
+    <li class="page-item {% if students.number == p %}active{% endif %}">
+      <a class="page-link"
+         href="{% url 'students:home' %}?page={{ p }}&order_by={{ order_by}}&reverse={{ reverse }}">{{ p }}</a>
+    </li>
+    {% endfor %}
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
+      <a class="page-link" aria-label="Next"
+         href="{% url 'students:home' %}?page={{ students.paginator.num_pages }}&order_by={{ order_by}}&reverse={{ reverse }}">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
   </ul>
 </nav>
+{% endwith %}
+{% endif %}
+
 {% endblock content %}
