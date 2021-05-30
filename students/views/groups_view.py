@@ -1,19 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from students.models import Group
 
 
 def groups_list(request):
-    groups = (
-        {'id': 1,
-         'name': 'ME-1',
-         'leader': {'id': 1, 'name': 'Мейсон Пайнс'}},
-        {'id': 2,
-         'name': 'ME-2',
-         'leader': {'id': 2, 'name': 'Майбл Пайнс'}},
-        {'id': 3,
-         'name': 'ME-3',
-         'leader': {'id': 3, 'name': 'Стенлі Пайнс'}}
-    )
+    groups = Group.objects.all()
     return render(request, 'students/groups_list.html', {'groups': groups})
 
 

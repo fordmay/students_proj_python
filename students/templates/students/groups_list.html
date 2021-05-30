@@ -25,9 +25,9 @@
   <tbody>
   {% for group in groups %}
   <tr>
-    <td>{{ forloop.counter }}</td>
-    <td><a href="{% url 'students:groups_edit' group.id %}">{{ group.name }}</a></td>
-    <td><a href="{% url 'students:students_edit' group.leader.id %}">{{ group.leader.name }}</a></td>
+    <td>{{ group.id }}</td>
+    <td><a href="{% url 'students:groups_edit' group.id %}">{{ group.title }}</a></td>
+    <td><a href="{% url 'students:students_edit' group.leader.id %}">{{ group.leader }}</a></td>
     <td>
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle"
