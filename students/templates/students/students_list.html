@@ -18,7 +18,7 @@
   <thead>
   <tr>
     <th>
-      <a href="{% url 'students:home' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&reverse=1{% endif %}">
+      <a href="?order_by=id{% if order_by == 'id' and reverse != '1' %}&reverse=1{% endif %}">
         №
         {% if order_by == 'id' and reverse != '1' %}&uarr;
         {% elif order_by == 'id' and reverse == '1' %}&darr;
@@ -27,7 +27,7 @@
     </th>
     <th>Фото</th>
     <th>
-      <a href="{% url 'students:home' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&reverse=1{% endif %}">
+      <a href="?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&reverse=1{% endif %}">
         Прізвище
         {% if order_by == 'last_name' and reverse != '1' %}&uarr;
         {% elif order_by == 'last_name' and reverse == '1'%}&darr;
@@ -35,7 +35,7 @@
       </a>
     </th>
     <th>
-      <a href="{% url 'students:home' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&reverse=1{% endif %}">
+      <a href="?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&reverse=1{% endif %}">
         Ім’я
         {% if order_by == 'first_name' and reverse != '1' %}&uarr;
         {% elif order_by == 'first_name' and reverse == '1'%}&darr;
@@ -43,7 +43,7 @@
       </a>
     </th>
     <th>
-      <a href="{% url 'students:home' %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&reverse=1{% endif %}">
+      <a href="?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&reverse=1{% endif %}">
         № Білету
         {% if order_by == 'ticket' and reverse != '1' %}&uarr;
         {% elif order_by == 'ticket' and reverse == '1'%}&darr;
@@ -92,19 +92,19 @@
   <ul class="pagination">
     <li class="page-item">
       <a class="page-link" aria-label="Previous"
-         href="{% url 'students:home' %}?page=1&order_by={{ order_by }}&reverse={{ reverse }}">
+         href="?page=1&order_by={{ order_by }}&reverse={{ reverse }}">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     {% for p in students.paginator.page_range %}
     <li class="page-item {% if students.number == p %}active{% endif %}">
       <a class="page-link"
-         href="{% url 'students:home' %}?page={{ p }}&order_by={{ order_by}}&reverse={{ reverse }}">{{ p }}</a>
+         href="?page={{ p }}&order_by={{ order_by}}&reverse={{ reverse }}">{{ p }}</a>
     </li>
     {% endfor %}
     <li class="page-item">
       <a class="page-link" aria-label="Next"
-         href="{% url 'students:home' %}?page={{ students.paginator.num_pages }}&order_by={{ order_by}}&reverse={{ reverse }}">
+         href="?page={{ students.paginator.num_pages }}&order_by={{ order_by}}&reverse={{ reverse }}">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
