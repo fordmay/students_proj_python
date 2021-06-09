@@ -21,6 +21,9 @@ class Student(models.Model):
     ticket = models.CharField(
         max_length=256, blank=False, verbose_name="Білет"
     )
+    student_group = models.ForeignKey(
+        'Group', verbose_name="Група", blank=False, null=True, on_delete=models.PROTECT
+    )
     notes = models.TextField(
         blank=True, verbose_name="Додаткові нотатки"
     )
