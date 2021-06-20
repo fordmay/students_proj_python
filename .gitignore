@@ -6,6 +6,9 @@ __pycache__
 db.sqlite3
 media
 
+# Database
+students_proj/db.py
+
 # Backup files # 
 *.bak 
 
