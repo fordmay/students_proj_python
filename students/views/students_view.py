@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
-from students.models import Student
+from students.models.students_model import Student
 
 
 def students_list(request):

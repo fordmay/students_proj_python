@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
-from students.models import Group
+from students.models.groups_model import Group
 
 
 def groups_list(request):

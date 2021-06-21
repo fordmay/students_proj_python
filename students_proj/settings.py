@@ -75,14 +75,14 @@ WSGI_APPLICATION = 'students_proj.wsgi.application'
 
 # We moved DATABASES variable to db.py module which added to .gitignore
 # so we don't keep postgresql passwords in repository
-from .db import DATABASES
+# from .db import DATABASES
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
