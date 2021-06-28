@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
 from students.models.students_model import Student
+from students.models.groups_model import Group
 
 
 def students_list(request):
@@ -22,7 +23,31 @@ def students_list(request):
 
 
 def students_add(request):
-    return HttpResponse('<h1>Student Add Form</h1>')
+    # Якщо форма була запощена:
+    
+    #   Якщо кнопка Скасувати була натиснута:
+    
+    #       Повертаємо користувача до списку студентів
+    
+    #   Якщо кнопка Додати була натиснута:
+    
+    #       Перевіряємо данні на коректність та збираємо помилки
+    
+    #       Якщо данні були введені не коректно:
+    #           Віддаємо шаблон форми разом із помилками
+    
+    #       Якщо данні були введені коректно:
+    #           Створюємо та зберігаємо студента в базу
+    
+    #           Повертаємо користувача до списку студентів
+    
+    #       Якщо форма не була заповнена:
+    #           Повертаємо код початкового стану форми
+    
+    
+      
+    groups = Group.objects.all().order_by('title')
+    return render(request, 'students/students_add.html', {'groups': groups})
 
 
 def students_edit(request, student_id):
