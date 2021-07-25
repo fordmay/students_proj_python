@@ -1,6 +1,8 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
+
 from students.models.students_model import Student
 from students.models.groups_model import Group
 
@@ -23,31 +25,47 @@ def students_list(request):
 
 
 def students_add(request):
-    # Якщо форма була запощена:
-    
-    #   Якщо кнопка Скасувати була натиснута:
-    
-    #       Повертаємо користувача до списку студентів
-    
-    #   Якщо кнопка Додати була натиснута:
-    
-    #       Перевіряємо данні на коректність та збираємо помилки
-    
-    #       Якщо данні були введені не коректно:
-    #           Віддаємо шаблон форми разом із помилками
-    
-    #       Якщо данні були введені коректно:
-    #           Створюємо та зберігаємо студента в базу
-    
-    #           Повертаємо користувача до списку студентів
-    
-    #       Якщо форма не була заповнена:
-    #           Повертаємо код початкового стану форми
-    
-    
-      
-    groups = Group.objects.all().order_by('title')
-    return render(request, 'students/students_add.html', {'groups': groups})
+    # if form was POST
+    if request.method == "POST":
+
+        # if form ADD button clicked
+        if request.POST.get('add_button') is not None:
+            # TODO: validate input from user
+            # check data for corrections and errors
+            errors = {}
+
+            # if data was correct
+            if not errors:
+                # create student object and save it to database
+                student = Student(
+                    first_name=request.POST['first_name'],
+                    last_name=request.POST['last_name'],
+                    middle_name=request.POST['middle_name'],
+                    birthday=request.POST['birthday'],
+                    photo=request.FILES['photo'],
+                    ticket=request.POST['ticket'],
+                    student_group=Group.objects.get(pk=request.POST['student_group']),
+                    notes=request.POST['notes']
+                )
+                student.save()
+                # redirect user to students list
+                return HttpResponseRedirect(reverse('students:home'))
+
+            # if data wasn't correct
+            else:
+                # render form with errors and previous user input
+                return render(request, 'students/students_add.html',
+                              {'groups': Group.objects.all().order_by('title'), 'errors': errors})
+
+        # if form CANCEL button clicked
+        elif request.POST.get('cancel_button') is not None:
+            # redirect user to students list
+            return HttpResponseRedirect(reverse('students:home'))
+
+    else:
+        # initial form render
+        return render(request, 'students/students_add.html',
+                      {'groups': Group.objects.all().order_by('title')})
 
 
 def students_edit(request, student_id):
