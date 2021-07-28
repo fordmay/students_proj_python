@@ -13,37 +13,42 @@
   {% csrf_token %}
 
   <div>
-    <label for="first_name">Імʼя</label>
+    <label for="first_name">Імʼя*</label>
     <input id="first_name" type="text" value="" name="first_name" placeholder="Введіть ваше імʼя"/>
+    <span class="text-muted">{{errors.first_name}}</span>
   </div>
   <div>
-    <label for="last_name">Прізвище</label>
+    <label for="last_name">Прізвище*</label>
     <input id="last_name" type="text" value="" name="last_name" placeholder="Введіть ваше прізвище"/>
+    <span class="text-muted">{{errors.last_name}}</span>
   </div>
   <div>
     <label for="middle_name">По-батькові</label>
     <input id="middle_name" type="text" value="" name="middle_name" placeholder="Введіть ваше по-батькові"/>
   </div>
   <div>
-    <label for="birthday">Дата Народження</label>
+    <label for="birthday">Дата Народження*</label>
     <input id="birthday" type="text" value="" name="birthday" placeholder="Напр. 1984-12-30"/>
+    <span class="text-muted">{{errors.birthday}}</span>
   </div>
   <div>
     <label for="photo">Фото</label>
     <input id="photo" type="file" value="" name="photo"/>
   </div>
   <div>
-    <label for="ticket">Білет</label>
+    <label for="ticket">Білет*</label>
     <input id="ticket" type="text" value="" name="ticket" placeholder="Введіть номер білета"/>
+    <span class="text-muted">{{errors.ticket}}</span>
   </div>
   <div>
-    <label for="student_group">Група</label>
+    <label for="student_group">Група*</label>
     <select id="student_group" name="student_group">
       <option value="">Виберіть групу</option>
       {% for group in groups %}
       <option value="{{ group.id }}">{{ group.title }}</option>
       {% endfor %}
     </select>
+    <span class="text-muted">{{errors.student_group}}</span>
   </div>
   <div>
     <label for="notes">Додаткові Нотатки</label>

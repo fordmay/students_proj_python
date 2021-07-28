@@ -30,30 +30,56 @@ def students_add(request):
 
         # if form ADD button clicked
         if request.POST.get('add_button') is not None:
-            # TODO: validate input from user
-            # check data for corrections and errors
+            # errors collection
             errors = {}
+            # data collection
+            data = {'middle_name': request.POST.get('middle_name'),
+                    'notes': request.POST.get('notes')}
 
-            # if data was correct
+            # validate user input
+            first_name = request.POST.get('first_name', '').strip()
+            if not first_name:
+                errors['first_name'] = "Імʼя є обовʼязковим"
+            else:
+                data['first_name'] = first_name
+
+            last_name = request.POST.get('last_name', '').strip()
+            if not last_name:
+                errors['last_name'] = "Прізвище є обовʼязковим"
+            else:
+                data['last_name'] = last_name
+
+            birthday = request.POST.get('birthday', '').strip()
+            if not birthday:
+                errors['birthday'] = "Дата народження є обовʼязковим"
+            else:
+                data['birthday'] = birthday
+
+            ticket = request.POST.get('ticket', '').strip()
+            if not ticket:
+                errors['ticket'] = "Номер білета є обовʼязковим"
+            else:
+                data['ticket'] = ticket
+
+            student_group = request.POST.get('student_group', '').strip()
+            if not student_group:
+                errors['student_group'] = "Оберіть групу для студента"
+            else:
+                data['student_group'] = Group.objects.get(pk=student_group)
+
+            photo = request.FILES.get('photo')
+            if photo:
+                data['photo'] = photo
+
+            # create student object and save it to database
             if not errors:
-                # create student object and save it to database
-                student = Student(
-                    first_name=request.POST['first_name'],
-                    last_name=request.POST['last_name'],
-                    middle_name=request.POST['middle_name'],
-                    birthday=request.POST['birthday'],
-                    photo=request.FILES['photo'],
-                    ticket=request.POST['ticket'],
-                    student_group=Group.objects.get(pk=request.POST['student_group']),
-                    notes=request.POST['notes']
-                )
+                student = Student(**data)
                 student.save()
                 # redirect user to students list
                 return HttpResponseRedirect(reverse('students:home'))
 
-            # if data wasn't correct
+            # render form with errors and previous user input
             else:
-                # render form with errors and previous user input
                 return render(request, 'students/students_add.html',
                               {'groups': Group.objects.all().order_by('title'), 'errors': errors})
 
