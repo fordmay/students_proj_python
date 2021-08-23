@@ -3,8 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from students.models.students_model import Student
 from students.models.groups_model import Group
+from students.models.students_model import Student
+
+from datetime import datetime
 
 
 def students_list(request):
@@ -53,7 +55,12 @@ def students_add(request):
             if not birthday:
                 errors['birthday'] = "Дата народження є обовʼязковим"
             else:
-                data['birthday'] = birthday
+                try:
+                    datetime.strptime(birthday, '%Y-%m-%d')
+                except Exception:
+                    errors['birthday'] = "Введіть коректний формат дати (напр. 1984-12-30)"
+                else:
+                    data['birthday'] = birthday
 
             ticket = request.POST.get('ticket', '').strip()
             if not ticket:
@@ -65,7 +72,11 @@ def students_add(request):
             if not student_group:
                 errors['student_group'] = "Оберіть групу для студента"
             else:
-                data['student_group'] = Group.objects.get(pk=student_group)
+                group = Group.objects.filter(pk=student_group).first()
+                if group:
+                    data['student_group'] = group
+                else:
+                    errors['student_group'] = "Оберіть коректну групу"
 
             photo = request.FILES.get('photo')
             if photo:
