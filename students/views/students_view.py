@@ -7,7 +7,8 @@ from students.models.groups_model import Group
 from students.models.students_model import Student
 
 from datetime import datetime
-
+import imghdr
+import os.path
 
 def students_list(request):
     students = Student.objects.all()
@@ -78,9 +79,15 @@ def students_add(request):
                 else:
                     errors['student_group'] = "Оберіть коректну групу"
 
-            photo = request.FILES.get('photo')
+            photo = request.FILES['photo']
             if photo:
-                data['photo'] = photo
+                if photo.content_type == 'image/jpeg':
+                    if photo.size < 2097152:
+                        data['photo'] = photo
+                    else:
+                        errors['photo'] = f"Фото повинно бути меньше 2мб"
+                else:
+                    errors['photo'] = f"Фото повинно бути jpg"
 
             # create student object and save it to database
             if not errors:
