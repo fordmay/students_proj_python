@@ -81,13 +81,14 @@ def students_add(request):
 
             photo = request.FILES['photo']
             if photo:
-                if photo.content_type == 'image/jpeg':
+                if photo.content_type == ("image/jpeg" or "image/png"):
                     if photo.size < 2097152:
                         data['photo'] = photo
                     else:
-                        errors['photo'] = f"Фото повинно бути меньше 2мб"
+                        bt_to_mb = round(photo.size/1024.0**2, 2)
+                        errors['photo'] = f"Розмір фото {bt_to_mb}мб, а повинно бути меньше 2мб"
                 else:
-                    errors['photo'] = f"Фото повинно бути jpg"
+                    errors['photo'] = "Фото повинно бути .jpg або .png"
 
             # create student object and save it to database
             if not errors:
