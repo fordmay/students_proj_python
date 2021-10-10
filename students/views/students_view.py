@@ -79,7 +79,7 @@ def students_add(request):
                 else:
                     errors['student_group'] = "Оберіть коректну групу"
 
-            photo = request.FILES['photo']
+            photo = request.FILES.get('photo')
             if photo:
                 if photo.content_type == ("image/jpeg" or "image/png"):
                     if photo.size < 2097152:
