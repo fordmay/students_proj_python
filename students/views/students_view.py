@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -95,16 +96,19 @@ def students_add(request):
                 student = Student(**data)
                 student.save()
                 # redirect user to students list
-                return HttpResponseRedirect('%s?status_message=Студента успішно додано!' % reverse('students:home'))
+                messages.success(request, "Студента успішно додано!")
+                return HttpResponseRedirect(reverse('students:home'))
             # render form with errors and previous user input
             else:
+                messages.error(request, "Будь ласка, виправте помилки!")
                 return render(request, 'students/students_add.html',
                               {'groups': Group.objects.all().order_by('title'), 'errors': errors})
 
         # if form CANCEL button clicked
         elif request.POST.get('cancel_button') is not None:
             # redirect user to students list
-            return HttpResponseRedirect('%s?status_message=Додавання студента скасовано!' % reverse('students:home'))
+            messages.info(request, "Додавання студента скасовано!")
+            return HttpResponseRedirect(reverse('students:home'))
 
     else:
         # initial form render

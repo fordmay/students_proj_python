@@ -70,13 +70,11 @@
   <div class="row" id="content-columns">
     <div class="col-sm-12" id="content-column">
       <!-- Status Message -->
-      {% block status_message %}
-        {% if request.GET.status_message %}
-          <div class="alert alert-warning" role="alert">
-            {{ request.GET.status_message }}
-          </div>
-        {% endif %}
-      {% endblock status_message%}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-warning" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
 
       <div class="d-flex my-3">
         <h2>
